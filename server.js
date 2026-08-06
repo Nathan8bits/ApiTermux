@@ -1,6 +1,11 @@
-const express = require("express");
+import usuarioRoutes from "./src/routes/usuarioRoutes.js";
+
+//const express = require("express");
+import express from "express"
 
 const app = express();
+
+const usuarios = []
 
 app.use(express.json()); //recebe o json e coloca tudo em req.body
 
@@ -42,12 +47,17 @@ app.get("/buscar", (req, res) => {
 
 // curl -X POST http://localhost:3000/usuarios -H "Content-Type: application/json" -d '{"nome":"Natan","idade":20}'
 
+app.use(usuarioRoutes);
+/*
 app.post("/usuarios", (req, res) => {
+  usuarios.push(req.body)
+
   res.json({
     mensagem: "usuario salvo com sucesso",
     usuario: req.body,
   });
 });
+*/
 
 app.listen(3000, () => {
   console.log("Servidor rodando em http://localhost:3000");
