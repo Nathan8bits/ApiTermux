@@ -37,7 +37,23 @@ const listarUsuarios = async (req, res) => {
   }
 };
 
+const buscarUsuarioId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const usuario = await usuarioModel.buscarUsuarioId();
+
+    res.json(usuario);
+  } catch (erro) {
+    console.log(erro);
+
+    res.status(500).json({
+      erro: erro.message,
+    });
+  }
+};
+
 export default {
   criarUsuario,
-  listarUsuarios
+  listarUsuarios,
+  buscarUsuarioId
 };

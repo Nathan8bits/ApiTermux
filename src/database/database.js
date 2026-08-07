@@ -23,9 +23,9 @@ const conectar = async () => {
   const SQL = await initSqlJs();
 
   try {
-    await access(CAMINHO_BANCO);
+    await access(CAMINHO_BANCO); // tenta acesar o arquivo
 
-    const arquivo = await readFile(CAMINHO_BANCO);
+    const arquivo = await readFile(CAMINHO_BANCO); //carrega do banco para a variavel
 
     db = new SQL.Database(arquivo);
   } catch {

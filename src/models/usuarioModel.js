@@ -13,6 +13,21 @@ const criarUsuario = async (nome, idade) => {
   await salvarBanco();
 };
 
+const buscarUsuarioId = async (id) => {
+  const db = await conectar();
+
+  const resultado = db.exec(`
+    SELECT *
+    FROM usuarios 
+    WHERE id = ?`,
+    [id],
+  )
+
+  const resultadoJs = convertSqlToJs(resultado);
+
+  return resultadoJs;
+}
+
 const listarUsuarios = async () => {
   const db = await conectar();
 
@@ -49,10 +64,35 @@ const listarUsuarios = async () => {
     return usuario;
   });
 
-  return resultado;
+  return usuarios;
 };
+
+function convertSqlToJs (sqlFormat) {
+
+  if (sqlFormat.length === 0) { 
+    return [];
+  }
+
+  const { columns, values } = sqlFormat[0];
+  
+  const formatJs = values.map((linha) => {
+
+    const registro = {};
+
+    columns.forEach((coluna, indice) => {
+
+      registro[coluna] = linha[indice];
+
+    });
+
+    return registro;
+  });
+
+  return formatJs;
+}
 
 export default {
   criarUsuario,
   listarUsuarios,
+  buscarUsuarioId
 };
