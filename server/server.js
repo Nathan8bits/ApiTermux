@@ -1,9 +1,12 @@
 import usuarioRoutes from "./src/routes/usuarioRoutes.js";
-
+import cors from "cors";
 //const express = require("express");
 import express from "express"
 
+
 const app = express();
+
+app.use(cors());
 
 const usuarios = []
 
@@ -27,14 +30,14 @@ app.get("/sobre", (req, res) => {
 
 //essa eh uma rota dinamica. recupera o parametro passado na url
 //usado quando queremos usar um recurso especifico
-app.get("/usuarios/:id", (req, res) => {
-  const id = req.params.id;
+//app.get("/usuarios/:id", (req, res) => {
+  //const id = req.params.id;
 
-  res.json({
-    mensagem: "Usuário encontrado.",
-    id: id,
-  });
-});
+  //res.json({
+   // mensagem: "Usuário encontrado.",
+   // id: id,
+  //});
+//});
 
 //usado quando queremos filtrar ou ordenar
 // /buscar?nome=natan
@@ -60,5 +63,5 @@ app.post("/usuarios", (req, res) => {
 */
 
 app.listen(3000, () => {
-  console.log("Servidor rodando em http://localhost:3000");
+  console.log("TESTE stats Servidor rodando em http://localhost:3000");
 });
