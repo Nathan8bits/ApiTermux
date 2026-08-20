@@ -18,12 +18,11 @@ const fetchApi = (value) => {
 	})
 
 	return result;
-	}
+}
 
 
 btnGet.addEventListener('click', async (event) => {
-	event.preventDefault();
-	
+	event.preventDefault();	
 	GetUsuariosId(numeroUsuario.value);
 })
 
@@ -32,17 +31,23 @@ btnGetTodos.addEventListener("click", async (event) => {
 	GetTodos();
 })
 
+const render = (lista) => {
+	listaUsuarios.innerHTML = "";
+
+	lista.forEach((item) => {	
+		const li = document.createElement("li");	
+		li.textContent = `nome: ${item.nome}, idade: ${item.idade}`;	
+		listaUsuarios.appendChild(li);
+		
+	})
+}
+
 const GetTodos = async () => {	
 	consoleHtml.textContent = URL;
 
 	const result = await fetchApi("");
 	content.textContent = `${JSON.stringify(result, undefined, 2)}`;
-
-	result.forEach((item) => {
-		const li = document.createElement("li");
-		li.textContent = `nome: ${item.nome}, idade: ${item.idade}`;
-		listaUsuarios.appendChild(li);
-	})
+	render(result);
 }
 
 const GetUsuariosId = async (value) => {
@@ -50,9 +55,6 @@ const GetUsuariosId = async (value) => {
 
 	const result = await fetchApi(`/${value}`);
 	content.textContent = `${JSON.stringify(result, undefined, 2)}`;
-	result.forEach((item) => {
-		const li = document.createElement("li");
-		li.textContent = `nome: ${item.nome}, idade: ${item.idade}`;
-		listaUsuarios.appendChild(li);
-	})
+
+	render(result);
 }
