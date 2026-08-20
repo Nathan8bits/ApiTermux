@@ -4,180 +4,93 @@
 
 body {
     margin: 0;
-    padding: 20px;
-
+    padding: 30px;
     font-family: Arial, sans-serif;
-
-    background: #f2f2f2;
-    color: #222;
+    background: #111;
+    color: #eee;
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-}
-
-h1 {
-    margin-bottom: 25px;
-}
-
-h2 {
-    margin-top: 0;
-    font-size: 20px;
-}
-
-.card {
-    background: white;
-
-    padding: 20px;
-    margin-bottom: 20px;
-
-    border-radius: 8px;
-
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-
-/* FORMULÁRIO */
-
-form {
+form,
+body > div {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+h1 {
+    width: 100%;
+    margin: 0 0 10px;
+    color: #00ff88;
 }
 
 input {
     padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #444;
 
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background: #222;
+    color: #fff;
 
     font-size: 15px;
 }
 
-form input[type="text"] {
-    flex: 1;
-    min-width: 180px;
+input:focus {
+    outline: none;
+    border-color: #00ff88;
 }
 
-form input[type="number"] {
-    width: 120px;
-}
-
-
-/* BOTÕES */
+/* Botões */
 
 button {
     padding: 10px 15px;
 
-    border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    border: 1px solid #00ff88;
 
-    background: #222;
-    color: white;
+    background: #00aa5c;
+    color: #fff;
 
+    font-size: 15px;
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
 button:hover {
-    opacity: 0.8;
+    background: #00ff88;
+    color: #111;
 }
 
-.secundario {
-    background: #777;
+/* Lista de usuários */
+
+#listaUsuarios {
+    margin-top: 30px;
+    padding: 15px;
+    list-style: none;
+
+    background: #1b1b1b;
+    border: 2px solid #00ff88;
+    border-radius: 10px;
+
+    box-shadow: 0 0 10px #00ff8844;
 }
 
-.editar {
-    background: #333;
-}
+/* Cada usuário */
 
-.excluir {
-    background: #b3261e;
-}
+#listaUsuarios li {
+    padding: 12px 15px;
+    margin-bottom: 8px;
 
-
-/* BUSCA */
-
-.buscar {
-    display: flex;
-    gap: 10px;
-}
-
-
-/* TABELA */
-
-.tabela-container {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    padding: 12px;
-
-    border-bottom: 1px solid #ddd;
-
-    text-align: left;
-}
-
-th {
-    background: #eee;
-}
-
-.acoes {
-    display: flex;
-    gap: 5px;
-}
-
-
-/* MENSAGEM */
-
-#mensagem {
-    display: none;
-
-    margin-bottom: 20px;
-    padding: 10px;
-
+    background: #292929;
+    border-left: 4px solid #00ff88;
     border-radius: 5px;
+
+    color: #fff;
 }
 
-#mensagem.sucesso {
-    display: block;
+/* Evita espaço desnecessário no último item */
 
-    background: #d9f5df;
-    color: #176b2c;
-}
-
-#mensagem.erro {
-    display: block;
-
-    background: #ffdede;
-    color: #8a1c1c;
-}
-
-
-@media (max-width: 600px) {
-
-    body {
-        padding: 10px;
-    }
-
-    form,
-    .buscar {
-        flex-direction: column;
-    }
-
-    form input,
-    form input[type="number"] {
-        width: 100%;
-    }
-
-    .acoes {
-        flex-direction: column;
-    }
-
+#listaUsuarios li:last-child {
+    margin-bottom: 0;
 }
