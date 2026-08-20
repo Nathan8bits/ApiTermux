@@ -3,6 +3,7 @@ const btnGet = document.getElementById('btnGet');
 const btnGetTodos = document.getElementById('btnGetTodos');
 const content = document.getElementById('context');
 const consoleHtml = document.getElementById('console');
+const listaUsuarios = document.querySelector("#listaUsuarios");
 
 const URL = "http://localhost:3000/usuarios";
 
@@ -23,21 +24,35 @@ const fetchApi = (value) => {
 btnGet.addEventListener('click', async (event) => {
 	event.preventDefault();
 	
-	consoleHtml.textContent = `${URL}/${numeroUsuario.value}`;
-
-	//console.log(`${URL}/${numeroUsuario.value}`);
-
-	//const result = await fetchApi(`/${numeroUsuario.value}`);
-
-	const result = await fetchApi(`/${numeroUsuario.value}`);
-	content.textContent = `${JSON.stringify(result, undefined, 2)}`;
+	GetUsuariosId(numeroUsuario.value);
 })
 
 btnGetTodos.addEventListener("click", async (event) => {
 	event.preventDefault();
+	GetTodos();
+})
 
-		
+const GetTodos = async () => {	
 	consoleHtml.textContent = URL;
+
 	const result = await fetchApi("");
 	content.textContent = `${JSON.stringify(result, undefined, 2)}`;
-})
+
+	result.forEach((item) => {
+		const li = document.createElement("li");
+		li.textContent = `nome: ${item.nome}, idade: ${item.idade}`;
+		listaUsuarios.appendChild(li);
+	})
+}
+
+const GetUsuariosId = async (value) => {
+	consoleHtml.textContent = `${URL}/${value}`;
+
+	const result = await fetchApi(`/${value}`);
+	content.textContent = `${JSON.stringify(result, undefined, 2)}`;
+	result.forEach((item) => {
+		const li = document.createElement("li");
+		li.textContent = `nome: ${item.nome}, idade: ${item.idade}`;
+		listaUsuarios.appendChild(li);
+	})
+}
