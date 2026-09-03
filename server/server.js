@@ -1,23 +1,36 @@
 import usuarioRoutes from "./src/routes/usuarioRoutes.js";
 import cors from "cors";
 //const express = require("express");
-import express from "express"
+import express from "express";
 
+import path from "path";
 
 const app = express();
 
 app.use(cors());
 
-const usuarios = []
+const usuarios = [];
 
 app.use(express.json()); //recebe o json e coloca tudo em req.body
 
+/*
 app.get("/", (req, res) => {
   res.json({
     mensagem: "minha primeira API",
     autor: "Natan",
     version: "1.0",
   });
+});
+*/
+
+// Source - https://stackoverflow.com/q/58801984
+// Posted by EmanuelGF, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-09-02, License - CC BY-SA 4.0
+
+app.use(express.static("public"));
+app.get("/", (req, res) => {
+  const index = path.join(__dirname, "/", "public", "index.html");
+  res.sendFile(index);
 });
 
 app.get("/sobre", (req, res) => {
@@ -31,12 +44,12 @@ app.get("/sobre", (req, res) => {
 //essa eh uma rota dinamica. recupera o parametro passado na url
 //usado quando queremos usar um recurso especifico
 //app.get("/usuarios/:id", (req, res) => {
-  //const id = req.params.id;
+//const id = req.params.id;
 
-  //res.json({
-   // mensagem: "Usuário encontrado.",
-   // id: id,
-  //});
+//res.json({
+// mensagem: "Usuário encontrado.",
+// id: id,
+//});
 //});
 
 //usado quando queremos filtrar ou ordenar
@@ -63,5 +76,5 @@ app.post("/usuarios", (req, res) => {
 */
 
 app.listen(3000, () => {
-  console.log("TESTE stats Servidor rodando em http://localhost:3000");
+  console.log("Servidor rodando em http://localhost:3000");
 });

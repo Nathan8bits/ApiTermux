@@ -1,3 +1,7 @@
+const inputUrl = document.querySelector("#inputUrl");
+const btnUrl = document.querySelector("#btnUrl");
+
+
 const numeroUsuario = document.getElementById("idUsuario");
 const btnGet = document.getElementById("btnGet");
 const btnGetTodos = document.getElementById("btnGetTodos");
@@ -93,6 +97,10 @@ btnPost.addEventListener("click", async (event) => {
 
   PostUsuario(dados);
 });
+
+btnUrl.addEventListener("click", () => {
+  content.textContent = inputUrl.value;
+})
 
 const render = (lista) => {
   listaUsuarios.innerHTML = "";
